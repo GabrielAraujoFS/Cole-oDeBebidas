@@ -1,8 +1,6 @@
 package com.nuvy.colecao_bebidas.controller;
 
-import com.nuvy.colecao_bebidas.dto.DashboardDTO;
-import com.nuvy.colecao_bebidas.dto.ItemRequestDTO;
-import com.nuvy.colecao_bebidas.dto.ItemResponseDTO;
+import com.nuvy.colecao_bebidas.dto.*;
 import com.nuvy.colecao_bebidas.enums.EstadoConservacao;
 import com.nuvy.colecao_bebidas.enums.TipoRecipiente;
 import com.nuvy.colecao_bebidas.service.ItemService;
@@ -60,4 +58,9 @@ public class ItemController {
     public DashboardDTO dashboard(){
         return itemService.obterDashboard();
     }
+    @PostMapping("/{id}/valor")
+    public ValorAquisicaoDTO obterValor(@PathVariable Long id, @RequestBody ValidarSenhaDTO dto) {
+        return itemService.obterValorProtegido(id, dto.senha());
+    }
+
 }
